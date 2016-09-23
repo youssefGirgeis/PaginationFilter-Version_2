@@ -3,9 +3,9 @@ var studentsNumber;
 //var student = $studentsList.children().first();
 //student.css('display', 'none');
 var mainPage = $('.page');
-var list = $('<ul></ul>').addClass('pagination');
+
 //list.addClass('adasa');
-mainPage.append(list);
+//mainPage.append(pagesList);
 var $input = $('input');
 
 function inititalDisplay(){
@@ -16,12 +16,13 @@ function inititalDisplay(){
     for(var i=0; i<10; i++){
         $('.student-list li').eq(i).css('display', 'block');
     }
-    $('.pagination li a').first().addClass('active');
+    console.log('ini');
     createPages($studentsList.children().length);
 }
 
 
 function createPages(studentsNumber){
+    console.log('createpages');
     //var studentsNumber = $studentsList.children().length;
     var pagesNumber = Math.ceil(studentsNumber/10);
     console.log(pagesNumber);
@@ -30,16 +31,18 @@ function createPages(studentsNumber){
     
     for(var i=0; i<pagesNumber; i++){
         var page = $('<li></li>');
-        var link = '<a href="#">'+ (i+1) +'</a>';
+        var link = $('<a href="#">'+ (i+1) +'</a>');
         page.append(link);
         pagesList.append(page);
     }
     $('.pagination li a').first().addClass('active');
     console.log(studentsNumber);
+    
 }
 
 function tenPerPage(){
     //alert($( this ).text());
+    console.log('tenperpage');
     $('.pagination li a').removeClass('active');
     $(this).addClass('active');
     var pageNumber = parseInt($(this).text());
@@ -74,10 +77,17 @@ function search(){
     }
     
     if(counter > 10){
+        $('.pagination').remove();
         createPages(counter);
         tenPerPageSearch();
     }else{
         $('.pagination').hide();
+    }
+    
+    if($input.val().length === 0){
+        console.log('empty');
+        $('.pagination').remove();
+        createPages($studentsList.children().length);
     }
     
 }
@@ -95,6 +105,7 @@ function tenPerPageSearch(){
         }
     }
 }
+
 
 inititalDisplay();
 $('.pagination li a').on('click', tenPerPage);
