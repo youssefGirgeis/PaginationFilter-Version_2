@@ -6,6 +6,7 @@ var mainPage = $('.page');
 var list = $('<ul></ul>').addClass('pagination');
 //list.addClass('adasa');
 mainPage.append(list);
+var $input = $('input');
 
 function inititalDisplay(){
     for(var i=0; i<$studentsList.children().length; i++){
@@ -15,6 +16,7 @@ function inititalDisplay(){
     for(var i=0; i<10; i++){
         $('.student-list li').eq(i).css('display', 'block');
     }
+    $('.pagination li a').first().addClass('active');
     createPages($studentsList.children().length);
 }
 
@@ -32,11 +34,14 @@ function createPages(studentsNumber){
         page.append(link);
         pagesList.append(page);
     }
+    $('.pagination li a').first().addClass('active');
     console.log(studentsNumber);
 }
 
 function tenPerPage(){
     //alert($( this ).text());
+    $('.pagination li a').removeClass('active');
+    $(this).addClass('active');
     var pageNumber = parseInt($(this).text());
     var start = (pageNumber * 10) - 10;
     var end = pageNumber * 10;
@@ -52,9 +57,25 @@ function tenPerPage(){
     
 }
 
+function search(){
+    
+    var studentsNames = $('.student-list li h3');
+    //console.log($studentsList);
+    
+    for(var i=0; i<$studentsList.children().length; i++){
+        if(studentsNames.eq(i).text().indexOf($input.val()) !== -1){
+            console.log(studentsNames.eq(i).text());
+            $('.student-list li').eq(i).css('display', 'block');
+        }else{
+            $('.student-list li').eq(i).css('display', 'none');
+        }
+    }
+    
+}
+
 inititalDisplay();
 $('.pagination li a').on('click', tenPerPage);
-
+$('input').on('keyup', search);
 
 
 
