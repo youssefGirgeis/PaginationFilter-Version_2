@@ -8,14 +8,14 @@ var list = $('<ul></ul>').addClass('pagination');
 mainPage.append(list);
 
 function inititalDisplay(){
-    var counter = 0;
     for(var i=0; i<$studentsList.children().length; i++){
-        $('.student-list li').css('display', 'block');
-        counter++;
+        $('.student-list li').css('display', 'none');
+
     }
-    
-    studentsNumber = counter;
-    createPages(studentsNumber);
+    for(var i=0; i<10; i++){
+        $('.student-list li').eq(i).css('display', 'block');
+    }
+    createPages($studentsList.children().length);
 }
 
 
@@ -27,11 +27,33 @@ function createPages(studentsNumber){
     mainPage.append(pagesList);
     
     for(var i=0; i<pagesNumber; i++){
-        var page = $('<li><a href="#">'+ (i+1) +'</a></li>');
+        var page = $('<li></li>');
+        var link = '<a href="#">'+ (i+1) +'</a>';
+        page.append(link);
         pagesList.append(page);
     }
+    console.log(studentsNumber);
 }
 
+function tenPerPage(){
+    //alert($( this ).text());
+    var pageNumber = parseInt($(this).text());
+    var start = (pageNumber * 10) - 10;
+    var end = pageNumber * 10;
+    
+    for(var i=0; i<$studentsList.children().length; i++){
+        $('.student-list li').css('display', 'none');
+
+    }
+    
+    for(var i = start; i < end; i++){
+        $('.student-list li').eq(i).css('display', 'block');
+    }
+    
+}
+
+inititalDisplay();
+$('.pagination li a').on('click', tenPerPage);
 
 
 
