@@ -24,7 +24,7 @@ function inititalDisplay(){
 function createPages(studentsNumber){
     //var studentsNumber = $studentsList.children().length;
     var pagesNumber = Math.ceil(studentsNumber/10);
-    //console.log(pagesNumber);
+    console.log(pagesNumber);
     var pagesList = $('<ul></ul>').addClass('pagination');
     mainPage.append(pagesList);
     
@@ -59,6 +59,7 @@ function tenPerPage(){
 
 function search(){
     
+    var counter = 0;
     var studentsNames = $('.student-list li h3');
     //console.log($studentsList);
     
@@ -66,11 +67,33 @@ function search(){
         if(studentsNames.eq(i).text().indexOf($input.val()) !== -1){
             console.log(studentsNames.eq(i).text());
             $('.student-list li').eq(i).css('display', 'block');
+            counter++;
         }else{
             $('.student-list li').eq(i).css('display', 'none');
         }
     }
     
+    if(counter > 10){
+        createPages(counter);
+        tenPerPageSearch();
+    }else{
+        $('.pagination').hide();
+    }
+    
+}
+
+function tenPerPageSearch(){
+    var blockCounter = 0;
+    console.log('tenPerPageSearch')
+    for(var i=0; i<$studentsList.children().length; i++){
+        if($('.student-list li').eq(i).css('display') === 'block'){
+            blockCounter++;
+            console.log(blockCounter);
+        }
+        if(blockCounter > 10){
+            $('.student-list li').eq(i).css('display', 'none');
+        }
+    }
 }
 
 inititalDisplay();
