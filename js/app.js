@@ -37,7 +37,7 @@ function createPages(studentsNumber){
     }
     $('.pagination li a').first().addClass('active');
     console.log(studentsNumber);
-    
+    $('.pagination li a').click(tenPerPage);
 }
 
 function tenPerPage(){
@@ -67,7 +67,7 @@ function search(){
     //console.log($studentsList);
     
     for(var i=0; i<$studentsList.children().length; i++){
-        if(studentsNames.eq(i).text().indexOf($input.val()) !== -1){
+        if(studentsNames.eq(i).text().indexOf($input.val().toLowerCase()) !== -1){
             console.log(studentsNames.eq(i).text());
             $('.student-list li').eq(i).css('display', 'block');
             counter++;
@@ -108,9 +108,8 @@ function tenPerPageSearch(){
 
 
 inititalDisplay();
-$('.pagination li a').on('click', tenPerPage);
-$('input').on('keyup', search);
 
+$('input').on('keyup', search);
 
 
 
