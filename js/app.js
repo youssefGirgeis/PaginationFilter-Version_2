@@ -127,7 +127,6 @@ function search(){
     
 }
 
-
 function tenPerPageSearch(){
     var blockCounter = 0;
     
@@ -153,9 +152,6 @@ function tenPerPageSearch(){
     }
 }
 
-
-
 inititalDisplay();
-
 $('input').on('keyup', search);
 
