@@ -24,7 +24,7 @@ function createPages(studentsNumber){
     if(pagesCreation <= 1){
         originalPagesNumber = pagesNumber;
     }
-    console.log(pagesNumber);
+
     var pagesList = $('<ul></ul>').addClass('pagination');
     mainPage.append(pagesList);
     
@@ -50,9 +50,8 @@ function tenPerPage(){
     var end = pageNumber * 10;
     
     if($('.pagination').children().length < originalPagesNumber){
-        console.log('firt if' + start);
+
         var index = getIndex(pageNumber);
-        console.log(index);
         for(var i=0; i<$studentsList.children().length; i++){
             $('.student-list li').eq(i).hide();
 
@@ -65,12 +64,10 @@ function tenPerPage(){
             }
             if(blockCounter > 10){
                 $('.student-list li').eq(i).hide();
-                //console.log($('.student-list li').eq(i).index());
             }
         }
         
     }else{
-        console.log('sencond if');
         for(var i=0; i<$studentsList.children().length; i++){
             $('.student-list li').css('display', 'none');
         }
@@ -124,13 +121,10 @@ function search(){
         $('.pagination').detach();
         createPages($studentsList.children().length);
     }
-    
 }
 
 function tenPerPageSearch(){
     var blockCounter = 0;
-    
-    console.log('tenPerPageSearch');
     
     for(var i=0; i<$studentsList.children().length; i++){
              $('.student-list li').eq(i).removeClass('block');
