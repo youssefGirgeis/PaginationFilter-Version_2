@@ -60,7 +60,6 @@ function tenPerPage(){
             if($('.student-list li').eq(i).hasClass('block')){
                 blockCounter++;
                 $('.student-list li').eq(i).css('display', 'block');
-                console.log(blockCounter);
             }
             if(blockCounter > 10){
                 $('.student-list li').eq(i).hide();
@@ -80,7 +79,6 @@ function tenPerPage(){
 
 function getIndex(pageNumber){
     var blockCounter = 0;
-    console.log('index');
     for(var i = 0; i < $studentsList.children().length; i++){
         if($('.student-list li').eq(i).hasClass('block')){
             blockCounter++;
@@ -117,7 +115,6 @@ function search(){
     }
     
     if($input.val().length === 0){
-        console.log('empty');
         $('.pagination').detach();
         createPages($studentsList.children().length);
     }
