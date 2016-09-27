@@ -107,9 +107,13 @@ function search(){
     var counter = 0;
     var noMatch = 0;
     var studentsNames = $('.student-list li h3');
+    var studentsEmails = $('.student-list li .email');
     
     for(var i=0; i<$studentsList.children().length; i++){
-        if(studentsNames.eq(i).text().indexOf($input.val().toLowerCase()) !== -1){
+        var n = $('.student-list li .email').eq(i).text().indexOf('@');
+        var email = $('.student-list li .email').eq(i).text().substring(0, n);
+
+        if(studentsNames.eq(i).text().indexOf($input.val().toLowerCase()) !== -1 || email.indexOf($input.val().toLowerCase()) !== -1){
 
             $('.student-list li').eq(i).css('display', 'block');
             counter++;
