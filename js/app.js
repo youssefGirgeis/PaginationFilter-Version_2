@@ -7,7 +7,7 @@ var pagesCreation = 0;
 var pageHeader = $('.page-header');
 var studentSearch;
 var $input;
-var message = $('<p><i class="fa fa-frown-o fa-3x" aria-hidden="true"></i>Sorry, there are no matches. Please try different name or email address.<i class="fa fa-frown-o fa-3x" aria-hidden="true"></i></p>').addClass('message');
+var message = $('<p><i class="fa fa-frown-o fa-2x" aria-hidden="true"></i>Sorry, there are no matches. Please try different name or email address.<i class="fa fa-frown-o fa-2x" aria-hidden="true"></i></p>').addClass('message');
 mainPage.append(message);
 message.hide();
 
