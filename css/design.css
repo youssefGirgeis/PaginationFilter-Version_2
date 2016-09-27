@@ -117,3 +117,9 @@ body{
       background-color: #4ba6c3;
       color: #fff;
     }
+
+.message{
+    color: red;
+    margin-top: 50px;
+    text-align: center;
+}

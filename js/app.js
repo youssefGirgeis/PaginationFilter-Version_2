@@ -7,6 +7,9 @@ var pagesCreation = 0;
 var pageHeader = $('.page-header');
 var studentSearch;
 var $input;
+var message = $('<p><i class="fa fa-frown-o fa-3x" aria-hidden="true"></i>Sorry, there are no matches. Please try different name or email address.<i class="fa fa-frown-o fa-3x" aria-hidden="true"></i></p>').addClass('message');
+mainPage.append(message);
+message.hide();
 
 function inititalDisplay(){
     studentSearch = $('<div></div>').addClass('student-search');
@@ -102,6 +105,7 @@ function getIndex(pageNumber){
 function search(){
     
     var counter = 0;
+    var noMatch = 0;
     var studentsNames = $('.student-list li h3');
     
     for(var i=0; i<$studentsList.children().length; i++){
@@ -110,8 +114,15 @@ function search(){
             $('.student-list li').eq(i).css('display', 'block');
             counter++;
         }else{
+            noMatch++;
             $('.student-list li').eq(i).css('display', 'none');
         }
+    }
+    
+    if(noMatch === $studentsList.children().length){
+        message.show();
+    }else{
+        message.hide();
     }
     
     if(counter > 10){
