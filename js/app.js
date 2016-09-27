@@ -1,12 +1,21 @@
 var $studentsList = $('.student-list');
 var studentsNumber;
 var mainPage = $('.page');
-var $input = $('input');
 var pagesNumber;
 var originalPagesNumber;
 var pagesCreation = 0;
+var pageHeader = $('.page-header');
+var studentSearch;
+var $input;
 
 function inititalDisplay(){
+    studentSearch = $('<div></div>').addClass('student-search');
+    $input = $('<input placeholder="Search for students">');
+    var $button = $('<button>Search</button>');
+    studentSearch.append($input);
+    studentSearch.append($button);
+    pageHeader.append(studentSearch);
+
     for(var i=0; i<$studentsList.children().length; i++){
         $('.student-list li').eq(i).hide();
     }
